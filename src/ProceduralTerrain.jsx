@@ -36,39 +36,3 @@ const ProceduralTerrain = ({ size, segments, height }) => {
 };
 
 export default ProceduralTerrain;
-
-
-
-// import React, { useMemo } from 'react';
-// import * as THREE from 'three';
-
-// const ProceduralTerrain = ({ size = 30, segments = 50, height = 5 }) => {
-//   const terrainGeometry = useMemo(() => {
-//     const geometry = new THREE.PlaneGeometry(size, size, segments, segments);
-//     const positions = geometry.attributes.position;
-
-//     for (let i = 0; i < positions.count; i++) {
-//       const x = positions.getX(i);
-//       const y = positions.getY(i);
-
-//       // Deterministic bumps using a function
-//       const z = Math.sin(x * 0.2) * Math.cos(y * 0.2) * height;
-//       positions.setZ(i, z);
-//     }
-
-//     geometry.computeVertexNormals();
-//     return geometry;
-//   }, [size, segments, height]);
-
-//   return (
-//     <mesh geometry={terrainGeometry} receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-//       <meshStandardMaterial color="#32a852" />
-//     </mesh>
-//   );
-// };
-
-// export default ProceduralTerrain;
-
-
-
-

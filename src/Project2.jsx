@@ -92,17 +92,17 @@ const Project2 = () => {
 
     const distance = 8;
     const height = 3;
-    const offsetX = -Math.sin(soldierRot) * distance;
-    const offsetZ = -Math.cos(soldierRot) * distance;
+    const offsetX = -Math.sin(soldierRot) * distance/1.5;
+    const offsetZ = -Math.cos(soldierRot) * distance/1.5;
 
     const cameraPos = new THREE.Vector3(
-      soldierPos.x - offsetX + 2,
-      soldierPos.y + height + 2,
+      soldierPos.x - offsetX + -1,
+      soldierPos.y + height + 0.6,
       soldierPos.z - offsetZ
     );
 
-    state.camera.position.lerp(cameraPos, 0.02);
-    state.camera.lookAt(soldierPos.x, soldierPos.y + 1.5, soldierPos.z);
+    state.camera.position.lerp(cameraPos, 0.06);
+    state.camera.lookAt(soldierPos.x, soldierPos.y + 2, soldierPos.z);
   });
 
   return (
@@ -117,7 +117,7 @@ const Project2 = () => {
   type="dynamic"
   mass={1}
   position={[0, 5, 0]} // spawn above terrain
-  enabledRotations={[false, true, false]}
+  enabledRotations={[false, false, false]}
 >
   <CapsuleCollider args={[0.5, 1.8]} position={[0, 0.9, 0]} />
   <primitive object={scene} scale={2} position={[0, -0.9, 0]} ref={sceneRef} />
@@ -139,23 +139,11 @@ const Project2 = () => {
       <RigidBody type="fixed" colliders={false}>
         {/* <ProceduralTerrain size={30} segments={5} height={5} /> */}
         <MeshCollider type="trimesh">
-          <ProceduralTerrain size={100} segments={5} height={5} />
+          <ProceduralTerrain size={200} segments={5} height={5} />
           
         </MeshCollider>
       </RigidBody>
 
-
-
-
-
-      {/* <Mountain></Mountain> */}
-
-      {/* Terrain (no wrapper) */}
-      {/* <Terrain /> */}
-      {/* <HeightfieldTerrain   heightmapUrl="src/models/grass_bermuda_01_alpha_2k.png"
-  textureUrl="src/models/8k_earth_daymap.jpg"></HeightfieldTerrain> */}
-      {/* <Mountain ></Mountain> */}
-      {/* <HeightfieldGround></HeightfieldGround> */}
     </>
   );
 };
