@@ -1,37 +1,80 @@
-import React, { useMemo } from 'react';
-import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
+import React, { useMemo } from "react";
+import * as THREE from "three";
+import Grass from "./Grass";
+import Tree_small from "./Tree_small";
+import { useLoader } from "@react-three/fiber";
 
-// You can use noise generation or a heightmap texture for more complex terrains
-// For this example, let's create a simple bumpy terrain
-const ProceduralTerrain = ({ size, segments, height }) => {
+const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
+  // Hill parameters
+  const hillCenter = new THREE.Vector2(10, -5);
+  const hillRadius = 30;
+  const hillBoost = 15;
+
+  // Terrain geometry
   const terrainGeometry = useMemo(() => {
-   
     const planeGeometry = new THREE.PlaneGeometry(size, size, segments, segments);
     const positionAttribute = planeGeometry.attributes.position;
-    
-    // Simple noise effect to create bumps
-    for (let i = 0; i < positionAttribute.count; i++) {
 
-      const z = Math.random() * height; // Modify the Z coordinate
-    //   console.log();
-      
+    for (let i = 0; i < positionAttribute.count; i++) {
+      const x = positionAttribute.getX(i);
+      const y = positionAttribute.getY(i);
+
+      // Base terrain bumps
+      let z =
+        Math.sin(x * 0.2) * Math.cos(y * 0.2) * height +
+        Math.sin(x * 0.5) * Math.cos(y * 0.5) * (height / 2);
+
+      // Hill offset exactly same as in getHeightAt
+      const dx = x - hillCenter.x + 40;
+      const dy = y - hillCenter.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < hillRadius) {
+        const factor = 1 - dist / hillRadius;
+        z += hillBoost * factor;
+      }
+
       positionAttribute.setZ(i, z);
     }
-    
+
     planeGeometry.computeVertexNormals();
     return planeGeometry;
-  }, [size, 2, height]);
+  }, [size, segments, height]);
 
-    const texture = useLoader(THREE.TextureLoader, 'src/models/8k_earth_daymap.jpg');
+  // Function to get terrain height at any (x, z)
+  const getHeightAt = (x, z) => {
+    let zHeight =
+      Math.sin(x * 0.2) * Math.cos(z * 0.2) * height +
+      Math.sin(x * 0.5) * Math.cos(z * 0.5) * (height / 2);
+
+    const dx = x - hillCenter.x +40;
+    const dz = z - hillCenter.y-10;
+    const dist = Math.sqrt(dx * dx + dz * dz);
+
+    if (dist < hillRadius) {
+      const factor = 1 - dist / hillRadius;
+      zHeight += hillBoost * factor;
+    }
+
+    return zHeight;
+  };
+
+  const texture = useLoader(THREE.TextureLoader, 'public/coast_land_rocks_04_diff_1k.jpg');
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set( 2,  2);
 
-  // Create a mesh from the geometry
+
   return (
-    <mesh geometry={terrainGeometry} receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-      <meshStandardMaterial color="#32a852" />
-    </mesh>
+    <>
+      {/* Terrain mesh */}
+      <mesh geometry={terrainGeometry} rotation={[-Math.PI / 2, 0, 0]}>
+        <meshStandardMaterial flatShading map={texture} />
+      </mesh>
+
+      {/* Grass on terrain */}
+      <Grass width={size} depth={size} spacing={3} getHeightAt={getHeightAt} />
+      <Tree_small getHeightAt={getHeightAt}></Tree_small>
+    </>
   );
 };
 
