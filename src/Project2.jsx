@@ -127,7 +127,7 @@ playerRef.current.setLinvel(vel, true);
 
       {/* Soldier */}
 <RigidBody
- gravityScale={9}
+ gravityScale={1}
   ref={playerRef}
   colliders={false}
   type="dynamic"
