@@ -13,7 +13,9 @@ import HillRock from './HillRock';
 import Sun from './Sun';
 
 const Project2 = () => {
+  // const { scene, animations } = useGLTF('/models/Soldier.glb');
   const { scene, animations } = useGLTF('/models/Soldier.glb');
+
   const { actions, mixer } = useAnimations(animations, scene);
   
 
