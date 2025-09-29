@@ -76,6 +76,7 @@ function seededRandom(seed) {
 // Grass chunk component
 const GrassChunk = ({ chunkX, chunkZ, size, maxDensity, getHeightAt, camera }) => {
   const { scene } = useGLTF("/models/grass_medium_01_1k.gltf");
+  // const { scene } = useGLTF("/models/tree_small_02_1k.gltf");
   const meshRef = useRef();
   const dummy = useMemo(() => new Object3D(), []);
 
