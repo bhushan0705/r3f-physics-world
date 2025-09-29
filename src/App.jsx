@@ -8,7 +8,7 @@ import './App.css';
 function App() {
 
   return (
-    <Canvas shadows camera={{ position: [0, 30, 15], fov: 120 }} background={"#7cccecff"}>
+    <Canvas shadows camera={{ position: [0, 30, 15], fov:60 }} background={"#7cccecff"}>
       <fog attach="fog" args={['#a0c4ff', 10, 100]} />
       <Suspense>
         <Physics>

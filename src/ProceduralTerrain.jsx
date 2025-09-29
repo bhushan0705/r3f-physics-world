@@ -74,10 +74,10 @@ const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
       </mesh>
 
       {/* Grass on terrain */}
-      <Grass width={size} depth={size} spacing={3} getHeightAt={getHeightAt} />
-      <Tree_small getHeightAt={getHeightAt}></Tree_small>
+      {/* <Grass width={size} depth={size} spacing={3} getHeightAt={getHeightAt} /> */}
+      {/* <Tree_small getHeightAt={getHeightAt}></Tree_small> */}
 
-      <WaterPond width={40} height={50} position={[0, 0, 0]} color="#fba905ff" getHeightAt={getHeightAt} />
+      {/* <WaterPond width={40} height={50} position={[0, 0, 0]} color="#fba905ff" getHeightAt={getHeightAt} /> */}
     </>
   );
 };
