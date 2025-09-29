@@ -104,18 +104,18 @@ playerRef.current.setLinvel(vel, true);
     sceneRef.current.getWorldPosition(soldierPos);
     const soldierRot = sceneRef.current.rotation.y;
 
-    const distance = 8;
-    const height = 3;
+    const distance = 10;
+    const height = 3.5;
     const offsetX = -Math.sin(soldierRot) * distance/1.5;
-    const offsetZ = -Math.cos(soldierRot) * distance/1.5;
+    const offsetZ = -Math.cos(soldierRot) * distance/2;
 
     const cameraPos = new THREE.Vector3(
-      soldierPos.x - offsetX + -1,
-      soldierPos.y + height + 0.6,
+      soldierPos.x - offsetX + 0,
+      soldierPos.y + height + 0,
       soldierPos.z - offsetZ
     );
 
-    state.camera.position.lerp(cameraPos, 0.06);
+    state.camera.position.lerp(cameraPos, 0.1);
     state.camera.lookAt(soldierPos.x, soldierPos.y + 2, soldierPos.z);
   });
 
@@ -125,7 +125,7 @@ playerRef.current.setLinvel(vel, true);
 
       {/* Soldier */}
 <RigidBody
- gravityScale={10}
+ gravityScale={6}
   ref={playerRef}
   colliders={false}
   type="dynamic"

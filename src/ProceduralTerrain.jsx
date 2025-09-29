@@ -3,6 +3,8 @@ import * as THREE from "three";
 import Grass from "./Grass";
 import Tree_small from "./Tree_small";
 import { useLoader } from "@react-three/fiber";
+// import WaterPound from "./WaterPond";
+import WaterPond from "./WaterPond";
 
 const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
   // Hill parameters
@@ -59,7 +61,7 @@ const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
     return zHeight;
   };
 
-  const texture = useLoader(THREE.TextureLoader, 'public/coast_land_rocks_04_diff_1k.jpg');
+  const texture = useLoader(THREE.TextureLoader, '/coast_land_rocks_04_diff_1k.jpg');
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set( 2,  2);
 
@@ -74,6 +76,8 @@ const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
       {/* Grass on terrain */}
       <Grass width={size} depth={size} spacing={3} getHeightAt={getHeightAt} />
       <Tree_small getHeightAt={getHeightAt}></Tree_small>
+
+      <WaterPond width={40} height={50} position={[0, 0, 0]} color="#fba905ff" getHeightAt={getHeightAt} />
     </>
   );
 };

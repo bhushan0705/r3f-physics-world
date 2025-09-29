@@ -1,10 +1,11 @@
 import { useGLTF } from '@react-three/drei'
 import { MeshCollider, RigidBody } from '@react-three/rapier'
 import React from 'react'
+// capgemini
 
 const BigTree = () => {
 
-    const {scene} = useGLTF('public/models/island_tree_02_1k.gltf');
+    const {scene} = useGLTF('/models/island_tree_02_1k.gltf');
 
   return (
     <>

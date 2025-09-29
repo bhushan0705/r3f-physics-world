@@ -6,7 +6,7 @@ import * as THREE from 'three'
 
 // 🔹 Deterministic random (so trees don't move on refresh)
 function seededRandom(seed) {
-  let x = Math.sin(seed) * 10000;
+  let x = Math.sin(seed) * 1000;
   return x - Math.floor(x);
 }
 
@@ -32,7 +32,7 @@ function Tree_small({ getHeightAt }) {
     return arr;
   }, [number, wild, depth, getHeightAt]);
 
-  const texture = useLoader(THREE.Loader,'public/coast_land_rocks_04_diff_1k.jpg')
+  // const texture = useLoader(THREE.Loader,'public/coast_land_rocks_04_diff_1k.jpg')
 
   return (
     <>
