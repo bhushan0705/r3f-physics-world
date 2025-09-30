@@ -1,4 +1,4 @@
-import { Box, OrbitControls, Sphere, useAnimations, useGLTF } from '@react-three/drei';
+import { OrbitControls, Sphere, useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CapsuleCollider, CuboidCollider, MeshCollider, RigidBody } from '@react-three/rapier';
 import React, { useEffect, useRef } from 'react';
@@ -6,18 +6,13 @@ import * as THREE from 'three';
 import ProceduralTerrain from './ProceduralTerrain';
 import InvisibleWall from './InvisibleWall';
 import { MoonRock } from './MoonRock';
-import Grass from './Grass';
-import Tree_small from './Tree_small';
 import BigTree from './BigTree';
 import HillRock from './HillRock';
 import Sun from './Sun';
 
 const Project2 = () => {
-  // const { scene, animations } = useGLTF('/models/Soldier.glb');
   const { scene, animations } = useGLTF('/Soldier.glb');
-
   const { actions, mixer } = useAnimations(animations, scene);
-  
 
   const keysPressed = useRef({});
   const playerRef = useRef();
@@ -146,11 +141,6 @@ playerRef.current.setLinvel(vel, true);
   </Sphere>
 </RigidBody>
 
-
-{/* <InvisibleWall></InvisibleWall> */}
-
-
-
             {/* Terrain with physics collision */}
       <RigidBody type="fixed" colliders={false}>
         {/* <ProceduralTerrain size={30} segments={5} height={5} /> */}
@@ -160,10 +150,6 @@ playerRef.current.setLinvel(vel, true);
         </MeshCollider>
       </RigidBody>
 
-
-{/* <MoonRock/> */}
-{/* <Grass></Grass> */}
-{/* <Tree_small></Tree_small> */}
 {/* <MoonRock></MoonRock> */}
 <BigTree></BigTree>
 <HillRock></HillRock>

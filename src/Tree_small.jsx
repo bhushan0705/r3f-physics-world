@@ -1,8 +1,6 @@
 import { useGLTF } from '@react-three/drei';
-import { useLoader } from '@react-three/fiber';
 import { MeshCollider, RigidBody } from '@react-three/rapier';
 import React, { useMemo } from 'react';
-import * as THREE from 'three'
 
 // 🔹 Deterministic random (so trees don't move on refresh)
 function seededRandom(seed) {
@@ -11,7 +9,7 @@ function seededRandom(seed) {
 }
 
 function Tree_small({ getHeightAt }) {
-  const { scene } = useGLTF('/models/tree_small_02_1k.gltf');
+  const { scene } = useGLTF('/tree_small_02_1k.gltf');
 
   const number = 5;        // number of trees
   const wild = 150;        // spread width

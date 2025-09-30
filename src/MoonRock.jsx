@@ -2,8 +2,7 @@ import { RigidBody, MeshCollider } from "@react-three/rapier";
 import { useGLTF } from "@react-three/drei";
 
 export function MoonRock() {
-  const { scene } = useGLTF("/models/moon_rock_01_1k.gltf");
-
+  const { scene } = useGLTF("/moon_rock_01_1k.gltf");
 
   let number = 10;
   const position = Array.from({length:number},(_,i)=>{
@@ -13,8 +12,6 @@ export function MoonRock() {
     const y = 1;                  // ground height
     return [x, y, z];
   })
-
-
 
   return (
     <>
