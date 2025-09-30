@@ -5,7 +5,7 @@ import React from 'react'
 
 const BigTree = () => {
 
-    const {scene} = useGLTF('/models/island_tree_02_1k.gltf');
+    const {scene} = useGLTF('/island_tree_02_1k.gltf');
 
   return (
     <>

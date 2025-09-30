@@ -2,7 +2,7 @@ import { useGLTF } from '@react-three/drei'
 import { MeshCollider, RigidBody } from '@react-three/rapier'
 import React from 'react'
 const HillRock = () => {
-  const { scene } = useGLTF('/models/boulder_01_1k.gltf') // no need to add "public/"
+  const { scene } = useGLTF('/boulder_01_1k.gltf') // no need to add "public/"
 
   // Rocks data: position + scale (kept exactly as your code)
   const rocks = [
