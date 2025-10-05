@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import * as THREE from "three";
 import Grass from "./Grass";
-// import Tree_small from "./Tree_small";
+import Tree_small from "./Tree_small";
 import { useLoader } from "@react-three/fiber";
-// import WaterPound from "./WaterPond";
-// import WaterPond from "./WaterPond";
+import WaterPond from "./WaterPond";
 
 const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
   // Hill parameters
@@ -75,9 +74,9 @@ const ProceduralTerrain = ({ size = 200, segments = 264, height = 2 }) => {
 
       {/* Grass on terrain */}
       <Grass width={size} depth={size} spacing={3} getHeightAt={getHeightAt} />
-      {/* <Tree_small getHeightAt={getHeightAt}></Tree_small> */}
+      <Tree_small getHeightAt={getHeightAt}></Tree_small>
 
-      {/* <WaterPond width={40} height={50} position={[0, 0, 0]} color="#fba905ff" getHeightAt={getHeightAt} /> */}
+      <WaterPond width={40} height={50} position={[0, 0, 0]} color="#fba905ff" getHeightAt={getHeightAt} />
     </>
   );
 };

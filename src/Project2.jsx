@@ -1,7 +1,7 @@
 import { OrbitControls, Sphere, useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CapsuleCollider, CuboidCollider, MeshCollider, RigidBody } from '@react-three/rapier';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import ProceduralTerrain from './ProceduralTerrain';
 import InvisibleWall from './InvisibleWall';
@@ -13,10 +13,18 @@ import Sun from './Sun';
 const Project2 = () => {
   const { scene, animations } = useGLTF('/Soldier.glb');
   const { actions, mixer } = useAnimations(animations, scene);
+  const [proceduralTerrainReady,setProceduralTerrainReady] = useState(false);
+
+
 
   const keysPressed = useRef({});
   const playerRef = useRef();
   const sceneRef = useRef();
+
+
+  useEffect(()=>{
+    setProceduralTerrainReady(true)
+  },[])
 
   // Keyboard events
   useEffect(() => {
@@ -121,8 +129,9 @@ playerRef.current.setLinvel(vel, true);
       <OrbitControls />
 
       {/* Soldier */}
+      {proceduralTerrainReady && (
 <RigidBody
- gravityScale={1}
+ gravityScale={50}
   ref={playerRef}
   colliders={false}
   type="dynamic"
@@ -133,6 +142,8 @@ playerRef.current.setLinvel(vel, true);
   <CapsuleCollider args={[0.5, 1.8]} position={[0, 0.9, 0]} />
   <primitive object={scene} scale={2} position={[0, -1.2, 0]} ref={sceneRef} />
 </RigidBody>
+      )}
+
 
 
 <RigidBody position={[1,5,1]}>

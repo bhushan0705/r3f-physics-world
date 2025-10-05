@@ -11,7 +11,7 @@ function seededRandom(seed) {
 function Tree_small({ getHeightAt }) {
   const { scene } = useGLTF('/tree_small_02_1k.gltf');
 
-  const number = 5;        // number of trees
+  const number = 20;        // number of trees
   const wild = 150;        // spread width
   const depth = 40;        // spread depth
 
